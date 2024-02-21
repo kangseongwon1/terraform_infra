@@ -80,14 +80,14 @@ resource "aws_db_parameter_group" "this" {
 resource "aws_rds_cluster_instance" "this" {
   for_each = { for k,v in var.instances : k => v }
 
-  identifier =  var.name
+  identifier =  each.value.identifier
   cluster_identifier = aws_rds_cluster.this.id
 
-  instance_class = var.instance_class
-  engine = var.cluster_instance_engine
+  instance_class = each.value.instance_class
+  engine = var.engine
 
-  promotion_tier = var.promotion_tier
-  publicly_accessible = var.publicly_accessible  
+  promotion_tier = try(each.value.promotion_tier, null)
+  publicly_accessible = try(each.value.publicly_accessible, var.publicly_accessible)
   tags = merge(
     {"Name" = var.name} , var.tags
   )

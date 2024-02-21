@@ -15,10 +15,6 @@ variable "tags" {
   
 }
 
-# variable "cluster_identifier" {
-  
-# }
-
 variable "engine_version" {
   
 }
@@ -81,14 +77,6 @@ variable "parameter" {
 }
 
 variable "instances" {
-  
-}
-
-# variable "cluster_instance_identifier" {
-  
-# }
-
-variable "instance_class" {
   
 }
 
